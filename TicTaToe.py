@@ -3,7 +3,7 @@ if mode=="player":
     board = {1: ' ', 2: ' ', 3: ' ',
         4: ' ', 5: ' ', 6: ' ',         # Ukuran Board
         7: ' ', 8: ' ', 9: ' '}
-    # Memilih X dan O
+    # X dan O
     player1 = 'O'
     player2 = 'X'
 
