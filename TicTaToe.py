@@ -1,5 +1,3 @@
-
-
 mode = input("Pilih Mode[player/bot]: ") #Memilih mode permainan
 if mode=="player":
     board = {1: ' ', 2: ' ', 3: ' ',
