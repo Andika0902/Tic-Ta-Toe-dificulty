@@ -13,11 +13,13 @@ ascii = '''
 ........................................................
 '''
 print(ascii)
-print("""Select: 
-      Start         Exit""")
+
 
 pilihan = 'y'
 while(pilihan !='n'):
+    print("""Select: 
+      
+        Start         Exit""")
     select = input("\nMasukan Pilihan : ")
     if select=="Start" or select=="start":
         mode = input("\nPilih Mode[player/bot]: ") #Memilih mode permainan
@@ -30,11 +32,11 @@ while(pilihan !='n'):
             player2 = 'X'
 
             def printBoard(board): # Print Board
-                print(board[1] + '|' + board[2] + '|' + board[3])
-                print('-+-+-')
-                print(board[4] + '|' + board[5] + '|' + board[6])
-                print('-+-+-')
-                print(board[7] + '|' + board[8] + '|' + board[9])
+                print(board[1] + ' | ' + board[2] + ' | ' + board[3])
+                print('--+---+--')
+                print(board[4] + ' | ' + board[5] + ' | ' + board[6])
+                print('--+---+--')
+                print(board[7] + ' | ' + board[8] + ' | ' + board[9])
                 print("\n")
 
 
@@ -196,11 +198,11 @@ while(pilihan !='n'):
 
                 # Game Board
                 def printBoard(board):
-                    print(board[1] + "|" + board[2] + "|" + board[3])
-                    print("-+-+-")
-                    print(board[4] + "|" + board[5] + "|" + board[6])
-                    print("-+-+-")
-                    print(board[7] + "|" + board[8] + "|" + board[9])
+                    print(board[1] + " | " + board[2] + " | " + board[3])
+                    print("--+---+--")
+                    print(board[4] + " | " + board[5] + " | " + board[6])
+                    print("--+---+--")
+                    print(board[7] + " | " + board[8] + " | " + board[9])
                     print("\n")
 
                 def spaceIsFree(position):
@@ -350,3 +352,55 @@ while(pilihan !='n'):
     else:
         print("Pilihan Tidak Diketahui")
         pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+
+
+"""Berikut adalah penjelasan fungsi-fungsi pada kode Python yang diberikan:
+
+1.  `printBoard(board)`: Mencetak papan permainan tic-tac-toe dengan posisi yang diberikan.
+
+2.  `spaceIsFree(position)`: Memeriksa apakah suatu posisi di papan masih kosong atau sudah diisi.
+
+3.  `insertLetter(letter, position)`: Memasukkan huruf (X atau O) ke dalam posisi tertentu 
+    di papan permainan dan memanggil fungsi `printBoard()`.
+
+4.  `checkForWin()`: Mengecek apakah ada pemain yang menang berdasarkan kondisi pada papan permainan.
+
+5.  `checkDraw()`: Mengecek apakah permainan berakhir dengan seri.
+
+6.  `playerMove()`: Mengambil input dari pemain untuk langkah berikutnya.
+
+7.  `compMove()`: Mengambil langkah berikutnya untuk komputer dalam permainan dengan pemain atau bot.
+
+8.  `cetak_papan(papan)`: Mencetak papan permainan untuk mode bot (easy).
+
+9.  `cek_pemenang(papan)`: Mengecek apakah ada pemenang pada papan permainan untuk mode bot (easy).
+
+10.  `permainan_berakhir(papan)`: Mengecek apakah permainan telah berakhir (seri atau ada pemenang) untuk mode bot (easy).
+
+11.  `main()`: Menjalankan permainan mode bot (easy).
+
+12.  `minimax(board, isMaximizing)`: Fungsi algoritma minimax untuk menentukan langkah terbaik bagi komputer pada mode bot (hard).
+
+13.  `checkWhichMarkWon(mark)`: Mengecek apakah suatu mark (X atau O) menang pada mode bot (hard).
+
+14.  `printBoard(board)`: Mencetak papan permainan untuk mode bot (hard).
+
+15.  `spaceIsFree(position)`: Memeriksa apakah suatu posisi di papan permainan (mode bot - hard) masih kosong atau sudah diisi.
+
+16.  `insertLetter(letter, position)`: Memasukkan huruf (X atau O) ke dalam posisi tertentu di papan permainan mode bot (hard).
+
+17.  `checkWin()`: Mengecek apakah ada pemain yang menang pada mode bot (hard).
+
+18.  `checkWhichMarkWon(mark)`: Mengecek apakah suatu mark (X atau O) menang pada mode bot (hard).
+
+19.  `checkDraw()`: Mengecek apakah permainan pada mode bot (hard) berakhir dengan seri.
+
+20.  `playerMove()`: Mengambil input dari pemain untuk langkah berikutnya pada mode bot (hard).
+
+21.  `compMove()`: Mengambil langkah berikutnya untuk komputer pada mode bot (hard).
+
+22.  `minimax(board, isMaximizing)`: Fungsi algoritma minimax untuk menentukan langkah terbaik bagi komputer pada mode bot (hard).
+
+
+Semua fungsi ini berperan dalam menjalankan logika permainan tic-tac-toe baik untuk mode pemain melawan pemain, pemain
+melawan bot (easy), atau pemain melawan bot (hard)."""
