@@ -1,359 +1,352 @@
-mode = input("Pilih Mode[player/bot]: ") #Memilih mode permainan
-if mode=="player":
-    board = {1: ' ', 2: ' ', 3: ' ',
-        4: ' ', 5: ' ', 6: ' ',         # Ukuran Board
-        7: ' ', 8: ' ', 9: ' '}
-    # X dan O
-    player1 = 'O'
-    player2 = 'X'
+ascii = '''
+........................................................
+..._______._........_______..........._______...........
+..|__   __(_)......|__   __|.........|__   __|..........
+.....| |..._..___.....| |.__._..___.....| |.___...___...
+.....| |..| |/ __|....| |/ _  |/ __|....| |/ _ \./ _ \..
+.....| |..| | (__.....| | (_| | (__.....| | (_) |  __/..
+.....|_|..|_|\___|__..|_|\__,_|\___|....|_|\___/.\___|..
+..............__..__...___...__..__...___...............
+..............\ \/ /../ _ \..\ \/ /../ _ \..............
+...............>  <..| (_) |..>  <..| (_) |.............
+............../_/\_\..\___/../_/\_\..\___/..............
+........................................................
+'''
+print(ascii)
+print("""Select: 
+      Start         Exit""")
 
-    def printBoard(board): # Print Board
-        print(board[1] + '|' + board[2] + '|' + board[3])
-        print('-+-+-')
-        print(board[4] + '|' + board[5] + '|' + board[6])
-        print('-+-+-')
-        print(board[7] + '|' + board[8] + '|' + board[9])
-        print("\n")
+pilihan = 'y'
+while(pilihan !='n'):
+    select = input("\nMasukan Pilihan : ")
+    if select=="Start" or select=="start":
+        mode = input("\nPilih Mode[player/bot]: ") #Memilih mode permainan
+        if mode=="player":
+            board = {1: ' ', 2: ' ', 3: ' ',
+                4: ' ', 5: ' ', 6: ' ',         # Ukuran Board
+                7: ' ', 8: ' ', 9: ' '}
+            # X dan O
+            player1 = 'O'
+            player2 = 'X'
+
+            def printBoard(board): # Print Board
+                print(board[1] + '|' + board[2] + '|' + board[3])
+                print('-+-+-')
+                print(board[4] + '|' + board[5] + '|' + board[6])
+                print('-+-+-')
+                print(board[7] + '|' + board[8] + '|' + board[9])
+                print("\n")
 
 
-    def spaceIsFree(position): 
-        if board[position] == ' ':
-            return True
-        else:
-            return False
-
-    # Cek Apakah Menang Atau Seri
-    def insertLetter(letter, position):
-        if spaceIsFree(position):
-            board[position] = letter
-            printBoard(board)
-            if (checkDraw()): 
-                print("Draw!")
-                exit()
-            if checkForWin():
-                if letter == 'X':
-                    print("Player2 wins!")
-                    exit()
+            def spaceIsFree(position): 
+                if board[position] == ' ':
+                    return True
                 else:
-                    print("Player1 wins!") 
-                    exit()
+                    return False
 
-            return
+            # Cek Apakah Menang Atau Seri
+            def insertLetter(letter, position):
+                if spaceIsFree(position):
+                    board[position] = letter
+                    printBoard(board)
+                    if (checkDraw()): 
+                        print("Draw!")
+                        
+                    if checkForWin():
+                        if letter == 'X':
+                            print("Player2 wins!")
+                            
+                        else:
+                            print("Player1 wins!") 
+                            
 
-
-        else:
-            print("Can't insert there!") # Jika input Posisi Sama/Salah
-            position = int(input("Please enter new position:  "))
-            insertLetter(letter, position)
-            return
-
-
-    def checkForWin(): # Mengecek Posisi X dan O untuk menentukan Kemenangan
-        if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
-            return True
-        elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
-            return True
-        elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
-            return True
-        elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
-            return True
-        elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
-            return True
-        elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
-            return True
-        elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
-            return True
-        elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
-            return True
-        else:
-            return False
+                    return
 
 
-    def checkDraw(): # Mengecek Jika Seri
-        for key in board.keys():
-            if (board[key] == ' '):
-                return False
-        return True
+                else:
+                    print("Can't insert there!") # Jika input Posisi Sama/Salah
+                    position = int(input("Please enter new position:  "))
+                    insertLetter(letter, position)
+                    return
 
 
-    def playerMove(): # Turn Player 1
-        position = int(input("Enter the position for 'O':  "))
-        insertLetter(player1, position)
-        return
+            def checkForWin(): # Mengecek Posisi X dan O untuk menentukan Kemenangan
+                if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
+                    return True
+                elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
+                    return True
+                elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
+                    return True
+                elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
+                    return True
+                elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
+                    return True
+                elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
+                    return True
+                elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
+                    return True
+                elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
+                    return True
+                else:
+                    return False
 
 
-    def compMove(): # Turn Player 2
-        position = int(input("Enter the position for 'X':  "))
-        insertLetter(player2, position)
-        return
-
-    printBoard(board) # Memanggil Board
-
-    while not checkForWin():
-        compMove()
-        playerMove()
-
-elif mode=="bot": # Mode Bot
-    kesulitan = input("Pilih Tingkat kesulitan[easy/hard]: ") # Memilih Tingkat kesulitan 
-    if kesulitan=="easy":
-        import random
-
-        board = [" ", " ", " ",
-                " ", " ", " ",      # Jarak Board
-                " ", " ", " "]
-        currentPlayer = "X"
-        winner = None
-        gameRunning = True
-
-        # game board
-        def printBoard(board):
-            print(board[0] + " | " + board[1] + " | " + board[2])
-            print("---------")
-            print(board[3] + " | " + board[4] + " | " + board[5])
-            print("---------")
-            print(board[6] + " | " + board[7] + " | " + board[8])
-
-
-        # input player
-        def playerInput(board):
-            inp = int(input("Select a spot 1-9: "))
-            if board[inp-1] == " ":
-                board[inp-1] = currentPlayer
-            else:
-                print("Oops player is already at that spot.")
-
-
-        # Cek apakahh menang atau seri
-        def checkHorizontle(board):
-            global winner
-            if board[0] == board[1] == board[2] and board[0] != " ":
-                winner = board[0]
-                return True
-            elif board[3] == board[4] == board[5] and board[3] != " ":
-                winner = board[3]
-                return True
-            elif board[6] == board[7] == board[8] and board[6] != " ":
-                winner = board[6]
-                return True
-
-        def checkRow(board):
-            global winner
-            if board[0] == board[3] == board[6] and board[0] != " ":
-                winner = board[0]
-                return True
-            elif board[1] == board[4] == board[7] and board[1] != " ":
-                winner = board[1]
-                return True
-            elif board[2] == board[5] == board[8] and board[2] != " ":
-                winner = board[3]
+            def checkDraw(): # Mengecek Jika Seri
+                for key in board.keys():
+                    if (board[key] == ' '):
+                        return False
                 return True
 
 
-        def checkDiag(board):
-            global winner
-            if board[0] == board[4] == board[8] and board[0] != " ":
-                winner = board[0]
-                return True
-            elif board[2] == board[4] == board[6] and board[4] != " ":
-                winner = board[2]
-                return True
+            def playerMove(): # Turn Player 1
+                position = int(input("Enter the position for 'O':  "))
+                insertLetter(player1, position)
+                return
 
 
-        def checkIfWin(board):
-            global gameRunning
-            if checkHorizontle(board):
-                printBoard(board)
-                print(f"The winner is {winner}!")
-                gameRunning = False
+            def compMove(): # Turn Player 2
+                position = int(input("Enter the position for 'X':  "))
+                insertLetter(player2, position)
+                return
 
-            elif checkRow(board):
-                printBoard(board)
-                print(f"The winner is {winner}!")
-                gameRunning = False
+            printBoard(board) # Memanggil Board
 
-            elif checkDiag(board):
-                printBoard(board)
-                print(f"The winner is {winner}!")
-                gameRunning = False
+            while not checkForWin():
+                compMove()
+                if checkForWin():
+                    pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                    break
+                playerMove()
+                if checkForWin():
+                    pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                    break
+        elif mode=="bot": # Mode Bot
+            kesulitan = input("Pilih Tingkat kesulitan[easy/hard]: ") # Memilih Tingkat kesulitan 
+            if kesulitan=="easy":
+                import random
 
+                def cetak_papan(papan):
+                    print(f"\n{papan[0]} | {papan[1]} | {papan[2]}")
+                    print("--|---|--")
+                    print(f"{papan[3]} | {papan[4]} | {papan[5]}")
+                    print("--|---|--")
+                    print(f"{papan[6]} | {papan[7]} | {papan[8]}")
 
-        def checkIfTie(board):
-            global gameRunning
-            if " " not in board:
-                printBoard(board)
-                print("It is a tie!")
-                gameRunning = False
+                def cek_pemenang(papan):
+                    aturan_pemenang = [(0, 1, 2), (3, 4, 5), (6, 7, 8),
+                                    (0, 3, 6), (1, 4, 7), (2, 5, 8),
+                                    (0, 4, 8), (2, 4, 6)]
 
+                    for aturan in aturan_pemenang:
+                        if papan[aturan[0]] == papan[aturan[1]] == papan[aturan[2]] and papan[aturan[0]] != ' ':
+                            return papan[aturan[0]]
 
-        # Ganti Giliran player
-        def switchPlayer():
-            global currentPlayer
-            if currentPlayer == "X":
-                currentPlayer = "O"
-            else:
-                currentPlayer = "X"
+                    return None
 
+                def permainan_berakhir(papan):
+                    return ' ' not in papan or cek_pemenang(papan) is not None
 
-        def computer(board):
-            while currentPlayer == "O":
-                position = random.randint(0, 8)
-                if board[position] == " ":
-                    board[position] = "O"
-                    switchPlayer()
+                def main():
+                    papan = [' '] * 9
+                    simbol_pemain = 'X'
+                    simbol_bot = 'O'
 
-        # Menjalankan Game
-        while gameRunning:
-            printBoard(board)
-            playerInput(board)
-            checkIfWin(board)
-            checkIfTie(board)
-            switchPlayer()
-            computer(board)
-            checkIfWin(board)
-            checkIfTie(board)
-    elif kesulitan=="hard":
-        board = {1: ' ', 2: ' ', 3: ' ',
-        4: ' ', 5: ' ', 6: ' ',             # Jarak Board
-        7: ' ', 8: ' ', 9: ' '}
-        player = 'O'
-        computer = 'X'
+                    while not permainan_berakhir(papan):
+                        cetak_papan(papan)
 
-        # Game Board
-        def printBoard(board):
-            print(board[1] + "|" + board[2] + "|" + board[3])
-            print("-+-+-")
-            print(board[4] + "|" + board[5] + "|" + board[6])
-            print("-+-+-")
-            print(board[7] + "|" + board[8] + "|" + board[9])
-            print("\n")
+                        if simbol_pemain == 'X':
+                            langkah = int(input("Pilih langkah (1-9): ")) - 1
 
-        def spaceIsFree(position):
-            if board[position] == ' ':
-                return True 
-            return False 
+                            if papan[langkah] == ' ':
+                                papan[langkah] = simbol_pemain
+                            else:
+                                print("Langkah tidak valid. Coba lagi.")
+                                continue
+                        else:
+                            # Bot's turn
+                            langkah_bot = random.randint(0, 8)
 
-        # Cek apakah Menang, Kalah atau seri
-        def insertLetter(letter, position):
-            if spaceIsFree(position):
-                board[position] = letter 
-                printBoard(board)
-                if checkDraw():
-                    print("Draw!")
-                    exit() 
-                if checkWin():
-                    if letter == 'X':
-                        print("Bot wins!")
-                        exit() 
-                    else:
-                        print("Player wins!")
-                        exit() 
-                return 
-            else:
-                print("Invalid position")
-                position = int(input("Please enter a new position: "))
-                insertLetter(letter, position)
-                return    
+                            while papan[langkah_bot] != ' ':
+                                langkah_bot = random.randint(0, 8)
 
-        def checkWin():
-            if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
-                return True
-            elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
-                return True
-            elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
-                return True
-            elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
-                return True
-            elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
-                return True
-            elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
-                return True
-            elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
-                return True
-            elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
-                return True
-            else:
-                return False
+                            papan[langkah_bot] = simbol_bot
 
-        def checkWhichMarkWon(mark):
-            if (board[1] == board[2] and board[1] == board[3] and board[1] == mark):
-                return True
-            elif (board[4] == board[5] and board[4] == board[6] and board[4] == mark):
-                return True
-            elif (board[7] == board[8] and board[7] == board[9] and board[7] == mark):
-                return True
-            elif (board[1] == board[4] and board[1] == board[7] and board[1] == mark):
-                return True
-            elif (board[2] == board[5] and board[2] == board[8] and board[2] == mark):
-                return True
-            elif (board[3] == board[6] and board[3] == board[9] and board[3] == mark):
-                return True
-            elif (board[1] == board[5] and board[1] == board[9] and board[1] == mark):
-                return True
-            elif (board[7] == board[5] and board[7] == board[3] and board[7] == mark):
-                return True
-            else:
-                return False
+                        pemenang = cek_pemenang(papan)
+                        if pemenang:
+                            cetak_papan(papan)
+                            print(f"Permainan berakhir. {pemenang} menang!")
+                            break
 
-        def checkDraw():
-            for key in board.keys():
-                if board[key] == ' ':
+                        simbol_pemain = 'O' if simbol_pemain == 'X' else 'X'
+
+                    if not pemenang:
+                        cetak_papan(papan)
+                        print("Permainan berakhir. Seri!")
+
+                if __name__ == "__main__":
+                    main()
+                    pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+
+            elif kesulitan=="hard":
+                board = {1: ' ', 2: ' ', 3: ' ',
+                4: ' ', 5: ' ', 6: ' ',             # Jarak Board
+                7: ' ', 8: ' ', 9: ' '}
+                player = 'O'
+                computer = 'X'
+
+                # Game Board
+                def printBoard(board):
+                    print(board[1] + "|" + board[2] + "|" + board[3])
+                    print("-+-+-")
+                    print(board[4] + "|" + board[5] + "|" + board[6])
+                    print("-+-+-")
+                    print(board[7] + "|" + board[8] + "|" + board[9])
+                    print("\n")
+
+                def spaceIsFree(position):
+                    if board[position] == ' ':
+                        return True 
                     return False 
-            return True 
 
-        # Turn Player
-        def playerMove():
-            position = int(input("Enter a position for 'O': "))
-            insertLetter(player, position)
-            return 
+                # Cek apakah Menang, Kalah atau seri
+                def insertLetter(letter, position):
+                    if spaceIsFree(position):
+                        board[position] = letter 
+                        printBoard(board)
+                        if checkDraw():
+                            print("Draw!")
 
-        # Turn Bot
-        def compMove():
-            bestScore = -800
-            bestMove = 0
-            for key in board.keys():
-                if board[key] == ' ':
-                    board[key] = computer
-                    score = minimax(board, False)
-                    board[key] = ' '
-                    if score > bestScore:
-                        bestScore = score 
-                        bestMove = key
-            insertLetter(computer, bestMove)
-            return 
-        def minimax(board, isMaximizing):
-            if checkWhichMarkWon(computer):
-                return 1 
-            elif checkWhichMarkWon(player):
-                return -1 
-            elif checkDraw():
-                return 0
-                
-            if isMaximizing:
-                bestScore = -800 
-                for key in board.keys():
-                    if board[key] == ' ':
-                        board[key] = computer 
-                        score = minimax(board, False)
-                        board[key] = ' '
-                        if score > bestScore:
-                            bestScore = score
-                return bestScore 
+                        if checkWin():
+                            if letter == 'X':
+                                print("Bot wins!")
+                                
+                            else:
+                                print("Player wins!")
+                                
+                        return 
+                    else:
+                        print("Invalid position")
+                        position = int(input("Please enter a new position: "))
+                        insertLetter(letter, position)
+                        return   
+
+                def checkWin():
+                    if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
+                        return True
+                    elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
+                        return True
+                    elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
+                        return True
+                    elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
+                        return True
+                    elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
+                        return True
+                    elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
+                        return True
+                    elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
+                        return True
+                    elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
+                        return True
+                    else:
+                        return False
+
+                def checkWhichMarkWon(mark):
+                    if (board[1] == board[2] and board[1] == board[3] and board[1] == mark):
+                        return True
+                    elif (board[4] == board[5] and board[4] == board[6] and board[4] == mark):
+                        return True
+                    elif (board[7] == board[8] and board[7] == board[9] and board[7] == mark):
+                        return True
+                    elif (board[1] == board[4] and board[1] == board[7] and board[1] == mark):
+                        return True
+                    elif (board[2] == board[5] and board[2] == board[8] and board[2] == mark):
+                        return True
+                    elif (board[3] == board[6] and board[3] == board[9] and board[3] == mark):
+                        return True
+                    elif (board[1] == board[5] and board[1] == board[9] and board[1] == mark):
+                        return True
+                    elif (board[7] == board[5] and board[7] == board[3] and board[7] == mark):
+                        return True
+                    else:
+                        return False
+
+                def checkDraw():
+                    for key in board.keys():
+                        if board[key] == ' ':
+                            return False 
+                    return True 
+
+                # Turn Player
+                def playerMove():
+                    position = int(input("Enter a position for 'O': "))
+                    insertLetter(player, position)
+                    return 
+
+                # Turn Bot
+                def compMove():
+                    bestScore = -800
+                    bestMove = 0
+                    for key in board.keys():
+                        if board[key] == ' ':
+                            board[key] = computer
+                            score = minimax(board, False)
+                            board[key] = ' '
+                            if score > bestScore:
+                                bestScore = score 
+                                bestMove = key
+                    insertLetter(computer, bestMove)
+                    return
+                def minimax(board, isMaximizing):
+                    if checkWhichMarkWon(computer):
+                        return 1 
+                    elif checkWhichMarkWon(player):
+                        return -1 
+                    elif checkDraw():
+                        return 0
+                        
+                    if isMaximizing:
+                        bestScore = -800 
+                        for key in board.keys():
+                            if board[key] == ' ':
+                                board[key] = computer 
+                                score = minimax(board, False)
+                                board[key] = ' '
+                                if score > bestScore:
+                                    bestScore = score
+                        return bestScore 
+                    else:
+                        bestScore = 800 
+                        for key in board.keys():
+                            if board[key] == ' ':
+                                board[key] = player 
+                                score = minimax(board, True)
+                                board[key] = ' '
+                                if score < bestScore:
+                                    bestScore = score 
+                        return bestScore
+
+
+                while not checkWin():
+                    compMove()
+                    if checkWin():
+                        pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                        break
+                    elif checkDraw():
+                        pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                        break
+                    playerMove()
+                    if checkWin():
+                        pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                        break
+                    elif checkDraw():
+                        pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
+                        break
             else:
-                bestScore = 800 
-                for key in board.keys():
-                    if board[key] == ' ':
-                        board[key] = player 
-                        score = minimax(board, True)
-                        board[key] = ' '
-                        if score < bestScore:
-                            bestScore = score 
-                return bestScore
-
-
-        while not checkWin():
-            compMove()
-            playerMove()
+                print("Tingkat kesulitan tidak diketahui")
+        else:
+            print("Mode tidak diketahui")
+    elif select=='Exit' or select=='exit':
+        exit()
     else:
-        print("Tingkat kesulitan tidak diketahui")
-else:
-    print("Mode tidak diketahui")
+        print("Pilihan Tidak Diketahui")
+        pilihan=input("Apakah anda ingin mengulang kembali (y/n)?")
